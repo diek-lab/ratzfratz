@@ -1,4 +1,4 @@
-package entities;
+package de.entities;
 
 
 public class User{
