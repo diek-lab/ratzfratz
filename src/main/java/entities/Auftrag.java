@@ -9,7 +9,6 @@ public class Auftrag{
         return auftragsNummer;
     }
 
-    
     public void setAuftragsNummer(final int auftragsNummer) {
         this.auftragsNummer = auftragsNummer;
     }
