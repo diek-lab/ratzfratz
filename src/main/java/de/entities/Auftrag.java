@@ -1,10 +1,17 @@
 package de.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Auftrag{
     private int auftragsNummer;
     private User auftraggeber;
     private String auftragsBeschreibung;
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getAuftragsNummer() {
         return auftragsNummer;
     }
