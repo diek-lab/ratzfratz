@@ -1,5 +1,7 @@
 package de.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +12,7 @@ public class Auftrag{
     private int auftragsNummer;
     private User auftraggeber;
     private String auftragsBeschreibung;
+    private Date startDatum;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getAuftragsNummer() {
@@ -40,6 +43,14 @@ public class Auftrag{
         this.auftragsNummer = auftragsNummer;
         this.auftraggeber = auftraggeber;
         this.auftragsBeschreibung = auftragsBeschreibung;
+    }
+
+    public Date getStartDatum() {
+        return startDatum;
+    }
+
+    public void setStartDatum(Date startDatum) {
+        this.startDatum = startDatum;
     }
 
     
