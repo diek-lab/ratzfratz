@@ -1,10 +1,19 @@
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RatzFratz</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Willkommen</h1>
-</body>
+    <form action="/logout" method="POST">
+        <input
+        type="hidden"
+        th:name="${_csrf.parameterName}"
+        th:value="${_csrf.token}"
+      />
+      <button>Logout</button>
+    </form>
+  </body>
 </html>

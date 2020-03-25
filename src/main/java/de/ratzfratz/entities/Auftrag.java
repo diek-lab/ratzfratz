@@ -1,4 +1,4 @@
-package de.entities;
+package de.ratzfratz.entities;
 
 import java.util.Date;
 
@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Auftrag{
     private int auftragsNummer;
-    private User auftraggeber;
+    private User user;
     private String auftragsBeschreibung;
     private Date startDatum;
 
@@ -23,13 +24,6 @@ public class Auftrag{
         this.auftragsNummer = auftragsNummer;
     }
 
-    public User getAuftraggeber() {
-        return auftraggeber;
-    }
-
-    public void setAuftraggeber(final User auftraggeber) {
-        this.auftraggeber = auftraggeber;
-    }
 
     public String getAuftragsBeschreibung() {
         return auftragsBeschreibung;
@@ -39,20 +33,28 @@ public class Auftrag{
         this.auftragsBeschreibung = auftragsBeschreibung;
     }
 
-    public Auftrag(final int auftragsNummer, final User auftraggeber, final String auftragsBeschreibung) {
-        this.auftragsNummer = auftragsNummer;
-        this.auftraggeber = auftraggeber;
-        this.auftragsBeschreibung = auftragsBeschreibung;
-    }
-
     public Date getStartDatum() {
         return startDatum;
     }
 
-    public void setStartDatum(Date startDatum) {
+    public void setStartDatum(final Date startDatum) {
         this.startDatum = startDatum;
     }
 
-    
+    @ManyToOne
+    public User getUser() {
+        return user;
+    }
 
+    public void setUser(final User user) {
+        this.user = user;
+    }
+
+    public Auftrag(final int auftragsNummer, final User user, final String auftragsBeschreibung,
+            final Date startDatum) {
+        this.auftragsNummer = auftragsNummer;
+        this.user = user;
+        this.auftragsBeschreibung = auftragsBeschreibung;
+        this.startDatum = startDatum;
+    }
 }

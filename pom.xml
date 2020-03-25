@@ -8,7 +8,7 @@
 		<version>2.2.5.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>de.ratzfratz</groupId>
+	<groupId>de.ratzfratz.web</groupId>
 	<artifactId>ratzfratz</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
@@ -59,7 +59,13 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+	
+   <dependency>
+     <groupId>org.springframework.data</groupId>
+     <artifactId>spring-data-jpa</artifactId>
+     <version>2.1.10.RELEASE</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

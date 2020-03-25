@@ -1,10 +1,40 @@
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-</head>
-<body>
-    <H1>Login</H1>
-</body>
+  </head>
+  <body>
+    <h1>Login</h1>
+    <form action="" method="POST">
+      <input
+        type="hidden"
+        th:name="${_csrf.parameterName}"
+        th:value="${_csrf.token}"
+      />
+      <fieldset>
+        <legend>Bitte Einloggen</legend>
+        <div th:if="${param.error != null}">
+          Fehler beim einloggen
+          <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+            Reason
+            <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+          </div>
+        </div>
+        <div th:if="${param.Logout != null}">Ausgeloggt</div>
+        <p>
+          <label for="username">Username</label>
+          <input type="text" name="username" id="username" />
+        </p>
+        <p>
+          <label for="password">Passwort</label>
+          <input type="text" name="password" id="password" />
+        </p>
+        <div>
+          <button type="submit">Log in</button>
+        </div>
+      </fieldset>
+    </form>
+  </body>
 </html>
