@@ -1,35 +1,11 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Logout</title>
   </head>
   <body>
-    <h1>Logout</h1>
-    <form action="" method="POST">
-      <fieldset>
-        <legend>Bitte Einloggen</legend>
-        <div th:if="@{param.error != null}">
-          Fehler beim einloggen
-          <div th:if="@{SPRING_SECURITY_LAST_EXCEPTION != null}">
-            Reason
-            <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
-          </div>
-        </div>
-        <div th:if="@{param.Logout != null}">Ausgeloggt</div>
-        <p>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" />
-        </p>
-        <p>
-          <label for="password">Passwort</label>
-          <input type="text" name="password" id="password" />
-        </p>
-        <div>
-          <button type="submit">Log in</button>
-        </div>
-      </fieldset>
-    </form>
+    <h1>Ausgeloggt</h1>
   </body>
 </html>
