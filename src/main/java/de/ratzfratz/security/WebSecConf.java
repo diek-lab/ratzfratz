@@ -29,17 +29,17 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-            .antMatchers("/").permitAll()
-            .antMatchers("home.html").permitAll()
-            .anyRequest().hasAnyRole("USER").and()
+        http
+            .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .anyRequest().hasAnyRole("USER").and()
             .formLogin()
-                .loginPage("login.html")
-                .defaultSuccessUrl("home.html")
+                .loginPage("/login")
+                .defaultSuccessUrl("/dashboard")
                 .permitAll()
                 .and()
             .logout()
-                .logoutUrl("logout.html")
+                .logoutUrl("/logout")
                 .permitAll();
     }
 }

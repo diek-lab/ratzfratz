@@ -45,5 +45,7 @@ public class Nachricht{
         this.user = user;
     }
 
+    public Nachricht() { }
+
     
 }

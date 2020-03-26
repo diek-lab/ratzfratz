@@ -52,4 +52,6 @@ public class Authority implements GrantedAuthority{
         this.authority = authority;
         this.user = user;
     }
+
+    public Authority() { }
 }

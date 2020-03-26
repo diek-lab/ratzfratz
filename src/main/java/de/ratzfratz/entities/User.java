@@ -3,7 +3,9 @@ package de.ratzfratz.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -65,10 +67,6 @@ public class User{
         this.id = id;
     }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -77,7 +75,7 @@ public class User{
         this.password = password;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -86,7 +84,7 @@ public class User{
         this.authorities = authorities;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Nachricht> getNachricht() {
         return nachricht;
     }
@@ -95,7 +93,7 @@ public class User{
         this.nachricht = nachricht;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Auftrag> getAuftrag() {
         return auftrag;
     }
@@ -112,4 +110,6 @@ public class User{
         this.adresse = adresse;
         this.password = password;
     }
+
+    public User() { }
 }

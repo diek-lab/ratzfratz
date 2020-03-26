@@ -57,4 +57,6 @@ public class Auftrag{
         this.auftragsBeschreibung = auftragsBeschreibung;
         this.startDatum = startDatum;
     }
+
+    public Auftrag() { }
 }

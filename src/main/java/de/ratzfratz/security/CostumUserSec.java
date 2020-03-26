@@ -13,24 +13,38 @@ public class CostumUserSec extends User implements UserDetails {
         super(id, name, vorname, emailAdresse, adresse, password);
     }
 
-    private static final long serialVersionUID = 1L;
+    public CostumUserSec(User user) {
+        this.setId(user.getId());
+        this.setAdresse(user.getAdresse());
+        this.setEmailAdresse(user.getEmailAdresse());
+        this.setName(user.getName());
+        this.setPassword(user.getPassword());
+        this.setVorname(user.getVorname());
+        this.setAuftrag(user.getAuftrag());
+        this.setAuthorities(user.getAuthorities());
+        this.setNachricht(user.getNachricht());
+    }
+    
+    public CostumUserSec() { }
+
+	private static final long serialVersionUID = 1L;
 
     @Override
     public Set<Authority> getAuthorities() {
 
-        return this.getAuthorities();
+        return super.getAuthorities();
     }
 
     @Override
     public String getPassword() {
 
-        return this.getPassword();
+        return super.getPassword();
     }
 
     @Override
     public String getUsername() {
 
-        return this.getEmailAdresse();
+        return super.getEmailAdresse();
     }
 
     @Override
