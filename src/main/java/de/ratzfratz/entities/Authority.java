@@ -1,4 +1,4 @@
-package de.ratzfratz.security;
+package de.ratzfratz.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import org.springframework.security.core.GrantedAuthority;
-
-import de.ratzfratz.entities.User;
 
 @Entity
 public class Authority implements GrantedAuthority{

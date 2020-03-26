@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+import de.ratzfratz.entities.Authority;
 import de.ratzfratz.entities.User;
 
 public class CostumUserSec extends User implements UserDetails {

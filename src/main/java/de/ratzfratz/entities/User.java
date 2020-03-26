@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import de.ratzfratz.security.Authority;
-
 @Entity
 @Table(name ="users")
 public class User{
@@ -22,8 +20,8 @@ public class User{
     private String adresse;
     private String password;
     private Set<Authority> authorities = new HashSet<>();
-    private Nachricht nachricht;
-    private Auftrag auftrag;
+    private Set<Nachricht> nachricht = new HashSet<>();
+    private Set<Auftrag> auftrag = new HashSet<>();
 
     public String getName() {
         return name;
@@ -89,20 +87,20 @@ public class User{
     }
 
     @OneToMany
-    public Nachricht getNachricht() {
+    public Set<Nachricht> getNachricht() {
         return nachricht;
     }
 
-    public void setNachricht(final Nachricht nachricht) {
+    public void setNachricht(final Set<Nachricht> nachricht) {
         this.nachricht = nachricht;
     }
 
     @OneToMany
-    public Auftrag getAuftrag() {
+    public Set<Auftrag> getAuftrag() {
         return auftrag;
     }
 
-    public void setAuftrag(final Auftrag auftrag) {
+    public void setAuftrag(final Set<Auftrag> auftrag) {
         this.auftrag = auftrag;
     }
 
