@@ -9,10 +9,6 @@ import de.ratzfratz.entities.User;
 
 public class CostumUserSec extends User implements UserDetails {
 
-    public CostumUserSec(int id, String name, String vorname, String emailAdresse, String adresse, String password) {
-        super(id, name, vorname, emailAdresse, adresse, password);
-    }
-
     public CostumUserSec(User user) {
         this.setId(user.getId());
         this.setAdresse(user.getAdresse());

@@ -102,14 +102,11 @@ public class User{
         this.auftrag = auftrag;
     }
 
-    public User(int id, String name, String vorname, String emailAdresse, String adresse, String password) {
-        this.id = id;
-        this.name = name;
-        this.vorname = vorname;
-        this.emailAdresse = emailAdresse;
-        this.adresse = adresse;
-        this.password = password;
-    }
-
     public User() { }
+
+    @Override
+    public String toString() {
+        return "User [adresse=" + adresse + ", id=" + id + ", name=" + name + ", password=" + password + ", vorname="
+                + vorname + "]";
+    }
 }
