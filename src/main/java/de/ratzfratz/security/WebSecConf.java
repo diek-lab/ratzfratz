@@ -29,14 +29,14 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
             .authorizeRequests()
             .antMatchers("/").permitAll()
             .antMatchers("/home").permitAll()
             .anyRequest().hasAnyRole("USER").and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/index")
+                .defaultSuccessUrl("/home")
                 .permitAll()
                 .and()
             .logout()
