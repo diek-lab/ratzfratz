@@ -6,6 +6,6 @@ import de.ratzfratz.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	User findByEmail(String emailAdresse);
+	User findByemailAdresse(String emailAdresse);
 
 }

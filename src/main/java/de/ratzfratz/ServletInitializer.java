@@ -1,4 +1,4 @@
-package de.ratzfratz.web;
+package de.ratzfratz;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

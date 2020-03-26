@@ -14,7 +14,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepo;
     @Override
     public UserDetails loadUserByUsername(String emailAdresse) throws UsernameNotFoundException {
-        User user = userRepo.findByEmail(emailAdresse);
+        User user = userRepo.findByemailAdresse(emailAdresse);
         if(user == null){
             throw new UsernameNotFoundException("Inkorrekte Email und Passwort");
         }
