@@ -46,12 +46,4 @@ public class Authority implements GrantedAuthority{
     public void setUser(final User user) {
         this.user = user;
     }
-
-    public Authority(final Integer id, final String authority, final User user) {
-        this.id = id;
-        this.authority = authority;
-        this.user = user;
-    }
-
-    public Authority() { }
 }

@@ -12,6 +12,7 @@ public class Nachricht{
     private Integer Id;
     private String text;
     private User user;
+    private Auftrag auftrag;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
@@ -39,13 +40,12 @@ public class Nachricht{
         this.user = user;
     }
 
-    public Nachricht(final Integer id, final String text, final User user) {
-        Id = id;
-        this.text = text;
-        this.user = user;
+    @ManyToOne
+    public Auftrag getAuftrag() {
+        return auftrag;
     }
 
-    public Nachricht() { }
-
-    
+    public void setAuftrag(Auftrag auftrag) {
+        this.auftrag = auftrag;
+    }
 }
