@@ -75,7 +75,7 @@ public class User{
         this.password = password;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -84,7 +84,7 @@ public class User{
         this.authorities = authorities;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Nachricht> getNachricht() {
         return nachricht;
     }
@@ -93,7 +93,7 @@ public class User{
         this.nachricht = nachricht;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     public Set<Auftrag> getAuftrag() {
         return auftrag;
     }

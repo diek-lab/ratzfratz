@@ -56,12 +56,12 @@ public class Auftrag{
         this.user = user;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auftrag")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "auftrag")
     public Set<Nachricht> getNachricht() {
         return nachricht;
     }
 
-    public void setNachricht(Set<Nachricht> nachricht) {
+    public void setNachricht(final Set<Nachricht> nachricht) {
         this.nachricht = nachricht;
     }
 }
