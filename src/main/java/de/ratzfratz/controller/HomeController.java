@@ -11,9 +11,4 @@ public class HomeController {
     public String rootView (){
         return "home";
     }
-
-    @PostMapping("/login")
-    public String login(){
-        return "/login";
-    }
 }
