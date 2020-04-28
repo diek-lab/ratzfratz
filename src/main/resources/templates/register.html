@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrieren</title>
+    <script th:replace="fragments/header :: include"></script>
 </head>
 <body>
+    <div th:replace="fragments/header :: navigation"></div>
     <h2>Account erstellen</h2>
     <form action="" method="POST">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
