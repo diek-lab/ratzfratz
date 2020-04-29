@@ -9,10 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+@NamedEntityGraph(name = "User.Auftrag", attributeNodes = {
+                                                            @NamedAttributeNode("auftrag"),
+                                                            @NamedAttributeNode("authorities")})
 @Table(name ="users")
 public class User{
     private int id;
@@ -75,7 +80,7 @@ public class User{
         this.password = password;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     public Set<Authority> getAuthorities() {
         return authorities;
     }
@@ -84,7 +89,7 @@ public class User{
         this.authorities = authorities;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     public Set<Nachricht> getNachricht() {
         return nachricht;
     }
@@ -93,7 +98,7 @@ public class User{
         this.nachricht = nachricht;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
     public Set<Auftrag> getAuftrag() {
         return auftrag;
     }

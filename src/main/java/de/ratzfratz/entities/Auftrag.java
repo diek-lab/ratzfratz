@@ -11,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 
 @Entity
+@NamedEntityGraph(name = "Auftrag.Nachricht", attributeNodes = @NamedAttributeNode("nachricht"))
 public class Auftrag{
     private int auftragsNummer;
     private User user;
@@ -56,7 +59,7 @@ public class Auftrag{
         this.user = user;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "auftrag")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auftrag")
     public Set<Nachricht> getNachricht() {
         return nachricht;
     }
