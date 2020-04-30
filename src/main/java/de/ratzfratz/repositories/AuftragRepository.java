@@ -9,5 +9,5 @@ import de.ratzfratz.entities.User;
 public interface AuftragRepository extends JpaRepository<Auftrag, Integer>{
     
     @EntityGraph(value = "Auftrag.Nachricht")
-    Auftrag findByUser(User user);
+    Auftrag findByuser(User user);
 }
