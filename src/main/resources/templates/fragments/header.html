@@ -33,13 +33,18 @@
                     <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/'} ? 'active' : ''">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/galerie'} ? 'active' : ''">
+                        <a class="nav-link" href="/galerie">Galerie</a>
+                    </li>
+                    <div sec:authorize="isAuthenticated()">
                     <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/dashboard'} ? 'active' : ''">
                         <a class="nav-link" href="/dashboard">Aufträge</a>
                     </li>
+                    </div>
                 </ul>
                 <div class="navbar-nav ml-auto">
                     <div sec:authorize="!isAuthenticated()" th:if="${#httpServletRequest.requestURI != '/login'}">
-                        <button class="btn btn-primary" id="loginBtn">Log in</button>
+                        <button class="btn btn-primary" id="loginBtn">Termin vereinbaren</button>
                         <script type="text/javascript">
                             $(function () {
                                 $("#loginBtn").click(function () {
@@ -57,6 +62,21 @@
                     </div>
                 </div>
         </nav>
+    </div>
+
+    <div th:fragment="ueberschrift" th:remove="tag">
+        <div class="row" style="margin-bottom: 2em;">
+            <div class="col-md-12 text-center">
+              <div class="card-body">
+                <h1 class="card-title">Hausmeisterservice ratz-fatz Monika Wolff</h1>
+                  <h4 class="card-text">Hausmeisterservice in Biederitz Schulstraße 1</h4>
+                  <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/'} ? 'Unsere Angebote' : ''"></h3>
+                  <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/galerie'} ? 'Galerie' : ''"></h3>
+                  <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/dashboard'} ? 'Aufträge' : ''"></h3>
+                  <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/login'} ? 'Login' : ''"></h3>
+              </div>
+            </div>
+          </div>
     </div>
 
 </body>
