@@ -23,6 +23,7 @@
           <th scope="col">Auftragsbeschreibung</th>
           <th scope="col">Start Datum</th>
           <th scope="col">Status</th>
+          <th scope="col">Bearbeiten</th>
         </tr>
       </thead>
       <tbody>
@@ -34,12 +35,13 @@
                 <td th:text="${auftrag.anschrift}"></td>
                 <td th:text="${auftrag.auftragsBeschreibung}"></td>
                 <td th:text="${auftrag.startDatum}"></td>
-                <td th:text="${auftrag.status} ? 'Erledigt': 'nicht erledigt'"></td>          
+                <td th:text="${auftrag.status} ? 'Erledigt': 'nicht erledigt'"></td>    
+                <td><a type="button" class="btn btn-primary" th:href="@{/auftrag/{auftragsnummer}(auftragsnummer=${auftrag.auftragsNummer})}">Bearbeiten</a></td>
           </tr>
         </tbody>
           </table>
     </div>
-
+    <div th:replace="fragments/header :: footer"></div>
 </body>
 
 </html>

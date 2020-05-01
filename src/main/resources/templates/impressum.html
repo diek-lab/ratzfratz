@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <script th:replace="fragments/header :: include"></script>
+</head>
+
+<body>
+  <div th:replace="fragments/header :: navigation"></div>
+  <div class="container" style="margin-top: 2em;">
+    <div th:replace="fragments/header :: ueberschrift"></div>
+
+<div class="card text-center">
+  <div class="card-body">
+    <h4 class="card-title">Impressum</h4>
+    <p class="card-text">
+        eRecht24 GmbH & Co. KG<br>
+        Lietzenburger Str. 94<br>
+        10719 Berlin<br>
+        
+        Handelsregister: HRA 54365 B<br>
+        Amtsgericht Charlottenburg<br>
+        UST-ID: DE242329852<br>
+        
+        Vertreten durch die persönlich haftende Gesellschafterin<br>
+        Firma GmbH<br>
+        Anschrift der Firma<br>
+        PLZ Berlin<br>
+        
+        Handelsregister: HRB 123456<br>
+        Amtsgericht Charlottenburg<br>
+        
+        Geschäftsführer: deine Mutter</p>
+  </div>
+</div>
+    </div>
+    <div th:replace="fragments/header :: footer"></div>
+</body>
+
+</html>

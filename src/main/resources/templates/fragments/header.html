@@ -81,9 +81,20 @@
                   <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/galerie'} ? 'Galerie' : ''"></h3>
                   <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/dashboard'} ? 'Aufträge' : ''"></h3>
                   <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/login'} ? 'Login' : ''"></h3>
+                  <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/impressum'} ? 'Impressum' : ''"></h3>
               </div>
             </div>
           </div>
+    </div>
+
+    <div th:fragment="footer" th:remove="tag">
+        <link rel="stylesheet" href="/style/footer.css">
+        <footer class="footer">
+              <span class="text-muted">
+                  <a href="/impressum" style="margin-left: 2em;">Impressum</a>
+                 <a class="btn btn-secondary float-right" sec:authorize="!isAuthenticated()" href="/login" style="margin-right: 2em; margin-top: 0.5em;">Admin-Bereich</a>
+              </span>
+          </footer>    
     </div>
 
 </body>

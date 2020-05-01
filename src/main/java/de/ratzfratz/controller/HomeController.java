@@ -10,4 +10,9 @@ public class HomeController {
     public String rootView (){
         return "home";
     }
+
+    @GetMapping("/impressum")
+    public String impressum (){
+        return "impressum";
+    }
 }

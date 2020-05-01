@@ -59,8 +59,23 @@
                         Bitte geben Sie ein gewünschtes Datum an
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" sec:authorize="!isAuthenticated()">
                     <button type="submit" class="btn btn-primary float-right">Termin vereinbaren</button>
+                </div>
+                <div class="custom-control custom-switch col-md-4 float-right" sec:authorize="isAuthenticated()">
+                    <input type="checkbox" class="custom-control-input float-right" th:field="${auftrag.status}">
+                    <label class="custom-control-label float-right" for="status1">Ist erledigt</label>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 2em;" sec:authorize="isAuthenticated()">
+                <div class="col-md-2">
+
+                    <a type="button" class="btn btn-danger float-left"
+                        th:href="@{/delete/{auftragsnummer}(auftragsnummer=${auftrag.auftragsNummer})}">Löschen</a>
+
+                </div>
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-primary float-right">Auftrag ändern</button>
                 </div>
             </div>
         </form>
@@ -87,17 +102,8 @@
         </script>
     </div>
 
-    <!-- <form action="" method="POST">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <label for="name">Name</label><input type="text" th:field="${auftrag.name}" /><br />
-        <label for="anschrift">Anschrift</label><input type="text" th:field="${auftrag.anschrift}" /><br />
-        <label for="auftragsBeschreibung">Auftragsbeschreibung</label><input type="text"
-            th:field="${auftrag.auftragsBeschreibung}" /><br />
-        <label for="startDatum">Gewünschtes Datum</label><input type="text"
-            th:field="${auftrag.startDatum}" /><br />
-        <button type="submit" class="btn btn-primary">Termin vereinbaren</button>
-    </form> -->
 
+    <div th:replace="fragments/header :: footer"></div>
 </body>
 
 </html>
