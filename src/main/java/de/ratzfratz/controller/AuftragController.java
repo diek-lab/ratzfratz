@@ -23,26 +23,26 @@ public class AuftragController {
     AuftragRepository auftragRepo;
 
     @GetMapping("/auftrag")
-    public String auftrag(ModelMap model) {
+    public String auftrag(final ModelMap model) {
         model.put("auftrag", new Auftrag());
         return "auftrag";
     }
 
     @PostMapping("/auftrag")
-    public String createAuftrag(Auftrag auftrag) {
+    public String createAuftrag(final Auftrag auftrag) {
         auftrag.setDatum(new Date());
         auftrag.setStatus(false);
-        Auftrag savedAuftrag = auftragRepo.save(auftrag);
+        final Auftrag savedAuftrag = auftragRepo.save(auftrag);
         System.out.println(savedAuftrag);
-        return "redirect:/";
+        return "home";
     }
 
     @GetMapping("/auftrag/{auftragsnummer}")
-    public String getauftrag(@PathVariable Integer auftragsnummer, ModelMap model, HttpServletResponse response)
+    public String getauftrag(@PathVariable final Integer auftragsnummer, final ModelMap model, final HttpServletResponse response)
             throws IOException {
-        Optional<Auftrag> auftragOpt = auftragRepo.findById(auftragsnummer);
+        final Optional<Auftrag> auftragOpt = auftragRepo.findById(auftragsnummer);
         if (auftragOpt.isPresent()) {
-            Auftrag auftrag = auftragOpt.get();
+            final Auftrag auftrag = auftragOpt.get();
             model.put("auftrag", auftrag);
         } else {
             response.sendError(HttpStatus.NOT_FOUND.value(), "Product with id " + auftragsnummer + " was not found");
@@ -53,8 +53,7 @@ public class AuftragController {
     }
 
     @PostMapping("/auftrag/{auftragsnummer}")
-    public String updateProduct(@PathVariable Integer auftragsnummer, Auftrag auftrag) {
-
+    public String updateProduct(@PathVariable final Integer auftragsnummer, Auftrag auftrag) {
         auftrag.setAuftragsNummer(auftragsnummer);
         auftrag.setDatum(auftragRepo.findById(auftragsnummer).get().getDatum());
         auftrag = auftragRepo.save(auftrag);
@@ -63,8 +62,7 @@ public class AuftragController {
     }
 
     @GetMapping("/delete/{auftragsnummer}")
-    public String deleteProduct(@PathVariable Integer auftragsnummer, Auftrag auftrag) {
-
+    public String deleteProduct(@PathVariable final Integer auftragsnummer, final Auftrag auftrag) {
         auftrag.setAuftragsNummer(auftragsnummer);
         auftragRepo.delete(auftrag);
 
