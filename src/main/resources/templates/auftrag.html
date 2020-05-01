@@ -3,26 +3,101 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrieren</title>
+    <title>Termin vereinbaren</title>
     <script th:replace="fragments/header :: include"></script>
 </head>
 
 <body>
     <div th:replace="fragments/header :: navigation"></div>
-    <div class="container">
+    <div class="container" style="margin-top: 2em;">
         <div th:replace="fragments/header :: ueberschrift"></div>
-        <form action="" method="POST">
+
+        <form class="needs-validation" action="" method="POST" novalidate>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-            <label for="name">Name</label><input type="text" th:field="${auftrag.name}" /><br />
-            <label for="anschrift">Anschrift</label><input type="text" th:field="${auftrag.anschrift}" /><br />
-            <label for="auftragsBeschreibung">Auftragsbeschreibung</label><input type="text"
-                th:field="${auftrag.auftragsBeschreibung}" /><br />
-            <label for="startDatum">Gewünschtes Datum</label><input type="text"
-                th:field="${auftrag.startDatum}" /><br />
-            <button type="submit" class="btn btn-primary">Termin vereinbaren</button>
+            <div class="form-row" style="margin-top: 2em;">
+                <div class="col-md-4">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" th:field="${auftrag.name}" required>
+                    <div class="invalid-feedback">
+                        Bitte geben Sie Ihren Namen an!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="anschrift">Anschrift</label>
+                    <input type="text" class="form-control" id="anschrift" th:field="${auftrag.anschrift}" required>
+                    <div class="invalid-feedback">
+                        Bitte teilen Sie uns Ihre Anschrift mit!
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="kontakt">Email oder Telefonnummer</label>
+                    <input type="text" class="form-control" id="anschrift" th:field="${auftrag.kontakt}" required>
+                    <div class="invalid-feedback">
+                        Bitte teilen Sie Ihren gewünschten Kontakt mit!
+                    </div>
+                </div>
+            </div>
+            <div class="form-row" style="margin-top: 2em;">
+                <div class="col-md-12">
+                    <label for="auftragsBeschreibung">Beschreibung des Auftrages</label>
+                    <textarea class="form-control" id="auftragsBeschreibung" rows="3"
+                        th:field="${auftrag.auftragsBeschreibung}" required></textarea>
+                    <div class="invalid-feedback">
+                        Bitte Beschreiben Sie kurz, was wir für Sie machen können.
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row" style="margin-top: 2em;">
+                <div class="col-md-4">
+                    <label for="startDatum">Gewünschtes Startdatum (gerne auch Kalenderwoche)</label>
+                </div>
+                <div class="col-md-4">
+
+                    <input type="text" class="form-control" id="startDatum" th:field="${auftrag.startDatum}" required>
+                    <div class="invalid-feedback">
+                        Bitte geben Sie ein gewünschtes Datum an
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-primary float-right">Termin vereinbaren</button>
+                </div>
+            </div>
         </form>
+
+        <script>
+            // Example starter JavaScript for disabling form submissions if there are invalid fields
+            (function () {
+                'use strict';
+                window.addEventListener('load', function () {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function (form) {
+                        form.addEventListener('submit', function (event) {
+                            if (form.checkValidity() === false) {
+                                event.preventDefault();
+                                event.stopPropagation();
+                            }
+                            form.classList.add('was-validated');
+                        }, false);
+                    });
+                }, false);
+            })();
+        </script>
     </div>
+
+    <!-- <form action="" method="POST">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <label for="name">Name</label><input type="text" th:field="${auftrag.name}" /><br />
+        <label for="anschrift">Anschrift</label><input type="text" th:field="${auftrag.anschrift}" /><br />
+        <label for="auftragsBeschreibung">Auftragsbeschreibung</label><input type="text"
+            th:field="${auftrag.auftragsBeschreibung}" /><br />
+        <label for="startDatum">Gewünschtes Datum</label><input type="text"
+            th:field="${auftrag.startDatum}" /><br />
+        <button type="submit" class="btn btn-primary">Termin vereinbaren</button>
+    </form> -->
+
 </body>
 
 </html>

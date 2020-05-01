@@ -1,5 +1,7 @@
 package de.ratzfratz.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +24,8 @@ public class AuftragController {
 
     @PostMapping("/auftrag")
     public String createAuftrag(Auftrag auftrag) {
+        auftrag.setDatum(new Date());
+        auftrag.setStatus(false);
         Auftrag savedAuftrag = auftragRepo.save(auftrag);
         System.out.println(savedAuftrag);
         return "redirect:/";
