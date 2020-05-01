@@ -9,16 +9,11 @@ import de.ratzfratz.entities.User;
 
 public class CostumUserSec extends User implements UserDetails {
 
-    public CostumUserSec(User user) {
+    public CostumUserSec(final User user) {
         this.setId(user.getId());
-        this.setAdresse(user.getAdresse());
         this.setEmailAdresse(user.getEmailAdresse());
-        this.setName(user.getName());
         this.setPassword(user.getPassword());
-        this.setVorname(user.getVorname());
-        this.setAuftrag(user.getAuftrag());
         this.setAuthorities(user.getAuthorities());
-        this.setNachricht(user.getNachricht());
     }
     
     public CostumUserSec() { }

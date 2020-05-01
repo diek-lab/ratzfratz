@@ -7,7 +7,7 @@ import de.ratzfratz.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	@EntityGraph(value = "User.Auftrag")
+	@EntityGraph(value = "User.Auth")
 	User findByemailAdresse(String emailAdresse);
 
 }

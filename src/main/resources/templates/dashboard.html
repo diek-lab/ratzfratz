@@ -12,6 +12,26 @@
     <div th:replace="fragments/header :: navigation"></div>
     <div class="container" style="margin-top: 2em;"> 
         <div th:replace="fragments/header :: ueberschrift"></div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Auftragsnummer</th>
+                <th scope="col">Name</th>
+                <th scope="col">Anschrift</th>
+                <th scope="col">Auftragsbeschreibung</th>
+                <th scope="col">Start Datum</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:each="auftrag : ${auftraege}">
+                <th scope="row" th:text="${auftrag.auftragsNummer}"></th>
+                <td th:text="${auftrag.name}"></td>
+                <td th:text="${auftrag.anschrift}"></td>
+                <td th:text="${auftrag.auftragsBeschreibung}"></td>
+                <td th:text="${auftrag.startDatum}"></td>
+              </tr>
+            </tbody>
+          </table>
     </div>
 
 </body>

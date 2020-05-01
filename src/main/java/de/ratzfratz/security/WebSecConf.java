@@ -3,6 +3,7 @@ package de.ratzfratz.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,7 +32,8 @@ public class WebSecConf extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .antMatchers("/", "/register", "/logout", "/galerie", "/images/**").permitAll()
+                .antMatchers("/", "/register", "/logout", "/galerie", "/images/**", "/auftrag").permitAll()
+                .antMatchers(HttpMethod.POST, "/auftrag").permitAll()
                 .anyRequest().hasAnyRole("USER").and()
             .formLogin()
                 .loginPage("/login")

@@ -23,7 +23,7 @@
     </div>
     <div th:fragment="navigation" th:remove="tag">
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">RatzFratz</a>
+            <a class="navbar-brand" href="/">ratz-fratz</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,6 +36,11 @@
                     <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/galerie'} ? 'active' : ''">
                         <a class="nav-link" href="/galerie">Galerie</a>
                     </li>
+                    <div sec:authorize="!isAuthenticated()">
+                    <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/auftrag'} ? 'active' : ''">
+                        <a class="nav-link" href="/auftrag">Termin vereinbaren</a>
+                    </li>
+                    </div>
                     <div sec:authorize="isAuthenticated()">
                     <li class="nav-item" th:classappend="${#httpServletRequest.requestURI == '/dashboard'} ? 'active' : ''">
                         <a class="nav-link" href="/dashboard">Aufträge</a>
@@ -43,12 +48,12 @@
                     </div>
                 </ul>
                 <div class="navbar-nav ml-auto">
-                    <div sec:authorize="!isAuthenticated()" th:if="${#httpServletRequest.requestURI != '/login'}">
+                    <div sec:authorize="!isAuthenticated()" th:if="${#httpServletRequest.requestURI != '/auftrag'}">
                         <button class="btn btn-primary" id="loginBtn">Termin vereinbaren</button>
                         <script type="text/javascript">
                             $(function () {
                                 $("#loginBtn").click(function () {
-                                    window.location.href = '/login'
+                                    window.location.href = '/auftrag'
                                 })
                             });
                         </script>
@@ -68,7 +73,8 @@
         <div class="row" style="margin-bottom: 2em;">
             <div class="col-md-12 text-center">
               <div class="card-body">
-                <h1 class="card-title">Hausmeisterservice ratz-fatz Monika Wolff</h1>
+                  <img src="/images/logo2.jpg" class="img-fluid" alt="">
+                  <h1 class="card-title">Hausmeisterservice ratz-fatz Monika Wolff</h1>
                   <h4 class="card-text">Hausmeisterservice in Biederitz Schulstraße 1</h4>
                   <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/'} ? 'Unsere Angebote' : ''"></h3>
                   <h3 class="card-text" th:text="${#httpServletRequest.requestURI == '/galerie'} ? 'Galerie' : ''"></h3>

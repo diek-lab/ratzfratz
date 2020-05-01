@@ -1,28 +1,17 @@
 package de.ratzfratz.entities;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.OneToMany;
 
 @Entity
-@NamedEntityGraph(name = "Auftrag.Nachricht", attributeNodes = @NamedAttributeNode("nachricht"))
 public class Auftrag{
     private int auftragsNummer;
-    private User user;
     private String auftragsBeschreibung;
-    private Date startDatum;
-    private Set<Nachricht> nachricht = new HashSet<>();
+    private String name;
+    private String anschrift;
+    private String startDatum;
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getAuftragsNummer() {
@@ -42,29 +31,35 @@ public class Auftrag{
         this.auftragsBeschreibung = auftragsBeschreibung;
     }
 
-    public Date getStartDatum() {
+    public String getStartDatum() {
         return startDatum;
     }
 
-    public void setStartDatum(final Date startDatum) {
+    public void setStartDatum(final String startDatum) {
         this.startDatum = startDatum;
     }
 
-    @ManyToOne
-    public User getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
-    public void setUser(final User user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "auftrag")
-    public Set<Nachricht> getNachricht() {
-        return nachricht;
+    public String getAnschrift() {
+        return anschrift;
     }
 
-    public void setNachricht(final Set<Nachricht> nachricht) {
-        this.nachricht = nachricht;
+    public void setAnschrift(String anschrift) {
+        this.anschrift = anschrift;
     }
+
+    @Override
+    public String toString() {
+        return "Auftrag [anschrift=" + anschrift + ", auftragsBeschreibung=" + auftragsBeschreibung
+                + ", auftragsNummer=" + auftragsNummer + ", name=" + name + ", startDatum=" + startDatum + "]";
+    }
+
+
 }
