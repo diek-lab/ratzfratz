@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import de.ratzfratz.bean.Mail;
 import de.ratzfratz.entities.Auftrag;
 import de.ratzfratz.repositories.AuftragRepository;
+import de.ratzfratz.service.MailServiceImpl;
 
 @Controller
 public class AuftragController {
     @Autowired
     private AuftragRepository auftragRepo;
+
+    @Autowired
+    private MailServiceImpl email;
 
     @GetMapping("/auftrag")
     public String auftrag(final ModelMap model) {
@@ -41,6 +46,16 @@ public class AuftragController {
 
         final Auftrag savedAuftrag = auftragRepo.save(auftrag);
         System.out.println(savedAuftrag);
+
+        Mail mail = new Mail();
+        mail.setMailFrom("service@ratz-fratz.de");
+        mail.setMailTo("marcelzintl@googlemail.com");
+        mail.setMailSubject("Auftragseingang");
+        mail.setMailContent("Ein neuer Auftrag ist eingegangen\n\n"+
+                             "Name "+savedAuftrag.getName()+"\n" +
+                             "Anschrift " +savedAuftrag.getAnschrift() + "\n" +
+                             "Auftragsbeschreibung: " + savedAuftrag.getAuftragsBeschreibung());
+        email.sendEmail(mail);
 
         return "redirect:/";
     }
