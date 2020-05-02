@@ -21,7 +21,7 @@ import de.ratzfratz.repositories.AuftragRepository;
 @Controller
 public class AuftragController {
     @Autowired
-    AuftragRepository auftragRepo;
+    private AuftragRepository auftragRepo;
 
     @GetMapping("/auftrag")
     public String auftrag(final ModelMap model) {
@@ -31,13 +31,17 @@ public class AuftragController {
 
     @PostMapping("/auftrag")
     public String createAuftrag(final Auftrag auftrag, HttpServletResponse response) {
+
         Cookie cookie = new Cookie("auftrag", "true");
         cookie.setMaxAge(1);
         response.addCookie(cookie);
+
         auftrag.setDatum(new Date());
         auftrag.setStatus(false);
+
         final Auftrag savedAuftrag = auftragRepo.save(auftrag);
         System.out.println(savedAuftrag);
+
         return "redirect:/";
     }
 
