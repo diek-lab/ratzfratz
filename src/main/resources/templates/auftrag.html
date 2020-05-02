@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <title>Termin vereinbaren</title>
     <script th:replace="fragments/header :: include"></script>
+
+    <script type="text/javascript">
+       
+    </script>
+
 </head>
 
 <body>
@@ -12,7 +17,7 @@
     <div class="container" style="margin-top: 2em;">
         <div th:replace="fragments/header :: ueberschrift"></div>
 
-        <form class="needs-validation" action="" method="POST" novalidate>
+        <form class="needs-validation" action="" method="POST" id="auftrag" novalidate>
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="form-row" style="margin-top: 2em;">
                 <div class="col-md-4">
@@ -31,7 +36,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="kontakt">Email oder Telefonnummer</label>
-                    <input type="text" class="form-control" id="anschrift" th:field="${auftrag.kontakt}" required>
+                    <input type="text" class="form-control" id="kontakt" th:field="${auftrag.kontakt}" required>
                     <div class="invalid-feedback">
                         Bitte teilen Sie Ihren gewünschten Kontakt mit!
                     </div>
@@ -59,6 +64,7 @@
                         Bitte geben Sie ein gewünschtes Datum an
                     </div>
                 </div>
+
                 <div class="col-md-4" sec:authorize="!isAuthenticated()">
                     <button type="submit" class="btn btn-primary float-right">Termin vereinbaren</button>
                 </div>
@@ -69,10 +75,7 @@
             </div>
             <div class="row" style="margin-top: 2em;" sec:authorize="isAuthenticated()">
                 <div class="col-md-2">
-
-                    <a type="button" class="btn btn-danger float-left"
-                        th:href="@{/delete/{auftragsnummer}(auftragsnummer=${auftrag.auftragsNummer})}">Löschen</a>
-
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loeschen">Löschen</button> 
                 </div>
                 <div class="col-md-10">
                     <button type="submit" class="btn btn-primary float-right">Auftrag ändern</button>
@@ -95,12 +98,36 @@
                                 event.stopPropagation();
                             }
                             form.classList.add('was-validated');
+                            Response.Redirect("Default.aspx?mess=true");
                         }, false);
                     });
                 }, false);
             })();
         </script>
+
+  <!-- Modal Admin -->
+  <div class="modal fade" id="loeschen" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Auftrag Löschen?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        Wollen sie den Auftrag wirklich löschen?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Nein</button>
+          <a type="button" class="btn btn-danger float-left"
+          th:href="@{/delete/{auftragsnummer}(auftragsnummer=${auftrag.auftragsNummer})}">Löschen</a>
+        </div>
+      </div>
     </div>
+  </div>
+
+</div>
 
 
     <div th:replace="fragments/header :: footer"></div>

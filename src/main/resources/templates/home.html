@@ -70,6 +70,32 @@
 
     </div>
   </div>
+    <!-- User Modal-->
+    <div class="modal fade" data-backdrop="static" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header bg-success text-white">
+                  Danke für Ihr Vertrauen
+              </div>
+              <div class="modal-body">
+                  Der Auftrag wurde erfolgreich an uns weitergeleitet.<br>
+                  Wir werden den auftrag so schnell wie möglich bearbeiten und melden uns dann bei Ihnen.<br>
+                  Wir wünschen Ihnen noch einen schönen Tag.
+              <!-- We display the details entered by the user here -->
+               
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Verstanden</button>
+              </div>
+          </div>
+      </div>
+      <script type="text/javascript" th:if="${auftrag == 'true'}">
+        $(window).on('load',function(){
+            $('#confirm-submit').modal('show');
+        });
+    </script>
+  </div>
+
   <div th:replace="fragments/header :: footer"></div>
 </body>
 

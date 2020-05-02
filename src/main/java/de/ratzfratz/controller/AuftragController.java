@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,17 +30,20 @@ public class AuftragController {
     }
 
     @PostMapping("/auftrag")
-    public String createAuftrag(final Auftrag auftrag) {
+    public String createAuftrag(final Auftrag auftrag, HttpServletResponse response) {
+        Cookie cookie = new Cookie("auftrag", "true");
+        cookie.setMaxAge(1);
+        response.addCookie(cookie);
         auftrag.setDatum(new Date());
         auftrag.setStatus(false);
         final Auftrag savedAuftrag = auftragRepo.save(auftrag);
         System.out.println(savedAuftrag);
-        return "home";
+        return "redirect:/";
     }
 
     @GetMapping("/auftrag/{auftragsnummer}")
-    public String getauftrag(@PathVariable final Integer auftragsnummer, final ModelMap model, final HttpServletResponse response)
-            throws IOException {
+    public String getauftrag(@PathVariable final Integer auftragsnummer, final ModelMap model,
+            final HttpServletResponse response) throws IOException {
         final Optional<Auftrag> auftragOpt = auftragRepo.findById(auftragsnummer);
         if (auftragOpt.isPresent()) {
             final Auftrag auftrag = auftragOpt.get();
